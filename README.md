@@ -2,6 +2,13 @@
 
 A React component that allows users to select human body parts and associated injuries. This project provides a user-friendly interface for selecting body parts and managing injury data.
 
+## Video Demonstration
+
+<video width="600" controls>
+  <source src="https://github.com/M-Hassan-Malik/portfolio-data/raw/refs/heads/main/npm-data/body-part-selector.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Installation
 
 You can install the Body Part Selector component via npm:
