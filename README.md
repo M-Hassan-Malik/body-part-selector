@@ -4,10 +4,27 @@ A React component that allows users to select human body parts and associated in
 
 ## Video Demonstration
 
-<video width="600" controls>
+<video width="600" controls preload="none" poster="path-to-poster-image.jpg">
   <source src="https://github.com/M-Hassan-Malik/portfolio-data/raw/refs/heads/main/npm-data/body-part-selector.mp4" type="video/mp4">
+  <source src="https://github.com/M-Hassan-Malik/portfolio-data/raw/refs/heads/main/npm-data/body-part-selector.webm" type="video/webm">
+  <source src="https://github.com/M-Hassan-Malik/portfolio-data/raw/refs/heads/main/npm-data/body-part-selector.ogv" type="video/ogg">
   Your browser does not support the video tag.
 </video>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const videoElement = document.querySelector('video');
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          videoElement.setAttribute('preload', 'auto');
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(videoElement);
+  });
+</script>
 
 ## Installation
 
