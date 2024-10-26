@@ -1,0 +1,15 @@
+# Ignore source files, configs, and unnecessary files
+src/
+tests/
+scripts/
+rollup.config.js
+tsconfig.json
+.vscode/
+.idea/
+*.log
+*.md
+.gitignore
+.npmignore
+
+# Ensure dist/ is included, as it’s where the compiled code is stored
+!dist/

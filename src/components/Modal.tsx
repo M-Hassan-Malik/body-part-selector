@@ -1,8 +1,14 @@
-// src/components/Modal.js
+// src/components/Modal.tsx
 
 import React from 'react';
 
-const Modal = ({ isOpen, onClose, children }) => {
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -59,5 +65,3 @@ const Modal = ({ isOpen, onClose, children }) => {
     </div>
   );
 };
-
-export default Modal;

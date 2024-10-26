@@ -8,15 +8,26 @@ import {
   injuryOptions,
   options,
 } from "./types";
-import Modal from "./Modal";
+import { Modal } from "./Modal";
 
+interface IBodyPartSelectorProps {
+  onInjuriyChange: (injuries: any[]) => void; // Adjust the type as needed
+}
 // Define props interface for BodyPartSelector component
-const BodyPartSelector = ({ onInjuriyChange }) => {
-  // State variables
-  const [hoverPart, setHoverPart] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selection, setSelection] = useState(null);
-  const [tempInjury, setTempInjury] = useState({
+const BodyPartSelector: React.FC<IBodyPartSelectorProps> = ({ onInjuriyChange }: IBodyPartSelectorProps) => {
+  
+  const [hoverPart, setHoverPart] = useState<string | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [selection, setSelection] = useState<{ humanPart: string; index: number } | null>(null);
+  const [tempInjury, setTempInjury] = useState<{
+    humanPart: string;
+    bodyPart: {
+      ref: string;
+      label: string;
+    };
+    injury: { ref: string; label: string };
+    description: string;
+  }>({
     humanPart: "",
     bodyPart: {
       ref: "",
@@ -25,13 +36,13 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
     injury: { ref: "", label: "" },
     description: "",
   });
-  const [injuries, setInjuries] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
-  const [errors, setErrors] = useState({ bodyPart: "", injury: "" });
+  const [injuries, setInjuries] = useState<any[]>([]);
+  const [editIndex, setEditIndex] = useState<number | null>(null);
+  const [errors, setErrors] = useState<{ bodyPart: string; injury: string }>({ bodyPart: "", injury: "" });
 
   // Memoized array of selected body parts
   const selectedParts = useMemo(() => {
-    return injuries.map((injury) => injury.humanPart);
+    return injuries.map((injury:any) => injury.humanPart);
   }, [injuries]);
 
   // Function to close the modal and reset temporary state
@@ -52,7 +63,7 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
   };
 
   // Function to get body part options based on selected human part
-  const getBodyPartOptions = (humanPart) => {
+  const getBodyPartOptions = (humanPart: string) => {
     switch (humanPart) {
       case "HEAD":
         return HeadOptions;
@@ -70,7 +81,7 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
   };
 
   // Event handlers
-  const handleBodyPartChange = (event) => {
+  const handleBodyPartChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = getBodyPartOptions(tempInjury.humanPart).find(
       (option) => option.ref === event.target.value
     );
@@ -84,7 +95,7 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
     setErrors((prev) => ({ ...prev, bodyPart: "" }));
   };
 
-  const handleInjuryChange = (event) => {
+  const handleInjuryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedOption = injuryOptions.find(
       (option) => option.ref === event.target.value
     );
@@ -98,7 +109,7 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
     setErrors((prev) => ({ ...prev, injury: "" }));
   };
 
-  const handleDescriptionChange = (event) => {
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTempInjury((prev) => ({
       ...prev,
       description: event.target.value,
@@ -143,7 +154,7 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
     }
   };
 
-  const handleRemove = (index) => {
+  const handleRemove = (index: number) => {
     setInjuries((prev) => {
       const updatedInjuries = prev.filter((_, i) => i !== index);
       onInjuriyChange(updatedInjuries);
@@ -151,13 +162,13 @@ const BodyPartSelector = ({ onInjuriyChange }) => {
     });
   };
 
-  const handleEdit = (index) => {
+  const handleEdit = (index: number) => {
     setTempInjury(injuries[index]);
     setEditIndex(index);
     setIsModalOpen(true);
   };
 
-  const handlePartClick = (part, i) => {
+  const handlePartClick = (part: { id: string; label: string; style: object }, i: number) => {
     const existingInjuryIndex = injuries.findIndex(
       (injury) => injury.humanPart === part.id
     );

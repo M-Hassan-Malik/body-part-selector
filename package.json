@@ -1,46 +1,33 @@
 {
   "name": "body-part-selector",
-  "version": "1.1.4",
-  "description": "A React component to select human body parts and associated injuries",
-  "main": "lib/index.js",
+  "version": "2.1.0",
+  "description": "test",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npx babel src --out-dir lib"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c --bundleConfigAsCjs"
   },
   "keywords": [
-    "react",
-    "body part selector",
-    "injury selector",
-    "component"
+    "body-part-selector"
   ],
-  "author": "hassan-sohail",
-  "displayName": "Muhammad Hassan Sohail",
-  "license": "MIT",
-  "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-scripts": "^5.0.0"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
-  },
+  "author": "Muhamamd Hassan Sohail",
+  "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.25.9",
-    "@babel/core": "^7.25.9",
-    "@babel/preset-env": "^7.25.9",
-    "@babel/preset-react": "^7.25.9"
+    "@types/react": "^18.3.12",
+    "react": "^18.3.1",
+    "tslib": "^2.8.0",
+    "typescript": "^5.6.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.1",
+    "rollup": "^4.24.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }
