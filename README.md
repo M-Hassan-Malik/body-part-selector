@@ -11,21 +11,6 @@ A React component that allows users to select human body parts and associated in
   Your browser does not support the video tag.
 </video>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const videoElement = document.querySelector('video');
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          videoElement.setAttribute('preload', 'auto');
-          observer.disconnect();
-        }
-      });
-    });
-    observer.observe(videoElement);
-  });
-</script>
-
 ## Installation
 
 You can install the Body Part Selector component via npm:
